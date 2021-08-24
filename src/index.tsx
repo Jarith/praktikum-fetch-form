@@ -2,6 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Search } from 'pages/Search';
 
-import 'tailwindcss/tailwind.css';
+import { createApp } from 'store';
 
-ReactDOM.render(<Search />, document.getElementById('root'));
+import 'tailwindcss/tailwind.css';
+import { Provider } from 'react-redux';
+
+const initialState = (window as any).__INITIAL_STATE__ || {};
+
+const { store } = createApp(initialState);
+
+const App = () => (
+    <Provider store={store}>
+        <Search />
+    </Provider>
+);
+
+ReactDOM.render(<App />, document.getElementById('root'));

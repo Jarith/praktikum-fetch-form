@@ -1,7 +1,10 @@
+import type { AxiosError } from 'axios';
 import type { Repository } from 'entities/repository';
 import type { SortOption } from 'app/constants';
 import { API_ROUTES } from 'app/constants';
 import axios from 'axios';
+
+export type ErrorType = AxiosError;
 
 const instance = axios.create({
     baseURL: 'https://api.github.com',
@@ -10,14 +13,14 @@ const instance = axios.create({
     },
 });
 
-type SearchRepositoriesParams = {
+export type SearchRepositoriesParams = {
     q: string;
     sort: SortOption;
     per_page?: number;
     page?: number;
 };
 
-type SearchRepositoriesResult = {
+export type SearchRepositoriesResult = {
     total_count: number;
     incomplete_results: boolean;
     items: Repository[];
